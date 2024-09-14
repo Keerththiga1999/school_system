@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/students',[StudentController::class,'index']);
+Route::resource('students',StudentController::class);
