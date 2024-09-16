@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students=Student::paginate(150);
+        $students=Student::paginate(15);
         return view('student.index', compact('students'));
     }
 
@@ -54,10 +54,10 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        $grade = Grade::find($id);
+        //$grade = Grade::find($id);
         $grades = Grade::pluck('grade_name', 'id');
         $student = Student::find($id);
-        return view('student.edit',compact('grade','grades','student'));
+        return view('student.edit',compact('grades','student'));
     }
 
     /**
@@ -68,6 +68,7 @@ class StudentController extends Controller
         $student= new Student;
         $student->first_name=$request->input('first_name');
         $student->last_name=$request->input('last_name');
+        //$student->grade_id=$request->input('grade_id');
         $student->grade_id=$request->input('grade_id');
         $student->save();
         return redirect('students');
