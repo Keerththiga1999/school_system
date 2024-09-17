@@ -14,9 +14,9 @@ class Grade extends Model
         return $this->hasMany(Student::class);
     }
 
-    public function Stud87()
-
+    public function subjects()
     {
-
+        return $this->belongsToMany(Subject::class);
     }
+
 }

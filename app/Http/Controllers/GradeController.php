@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
@@ -11,7 +13,8 @@ class GradeController extends Controller
      */
     public function index()
     {
-        //
+        $grades=Grade::paginate(15);
+        return view('grade.index',compact('grades'));
     }
 
     /**
@@ -19,7 +22,9 @@ class GradeController extends Controller
      */
     public function create()
     {
-        //
+        $grades=Grade::pluck('grade_name','id');
+        return view('grade.create',compact('grades'));
+        
     }
 
     /**
@@ -27,7 +32,15 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grade=new Grade;
+        $grade->grade_name=$request->input('grade_name');
+        $grade->grade_name=$request->input('grade_group');
+        $grade->grade_name=$request->input('grade_order');
+
+        $grade->grade_name=$request->input('grade_color');
+        $grade->save();
+        return redirect('/grades');
+
     }
 
     /**
@@ -35,7 +48,10 @@ class GradeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $grade=Grade::find($id);
+        $subjects=Grade::find($id)->subjects;
+        $students=Grade::find($id)->students;
+        return view('grade.show',compact('grade','subjects','students'));
     }
 
     /**
@@ -43,7 +59,9 @@ class GradeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $grade=Grade::find($id);
+        $grades = Grade::pluck('grade_name', 'id');
+        return view('grade.edit',compact('grades','grade'));
     }
 
     /**
@@ -51,7 +69,14 @@ class GradeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $grade=Grade::find($id);
+        $grade->grade_name=$request->input('grade_name');
+        $grade->grade_name=$request->input('grade_group');
+        $grade->grade_name=$request->input('grade_order');
+
+        $grade->grade_name=$request->input('grade_color');
+        $grade->save();
+        return redirect('/grades');
     }
 
     /**
@@ -59,6 +84,7 @@ class GradeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $grade=Grade::find($id);
+        $grade->delete();
     }
 }

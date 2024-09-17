@@ -45,7 +45,9 @@ class StudentController extends Controller
     public function show(string $id)
     {
         $student=Student::find($id);
-        return view('student.show',compact('student'));
+        $subjects=Student::find($id)->subjects;
+        $grade=Student::find($id)->grade;
+        return view('student.show',compact('student','subjects','grade'));
 
     }
 
@@ -54,7 +56,7 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //$grade = Grade::find($id);
+        
         $grades = Grade::pluck('grade_name', 'id');
         $student = Student::find($id);
         return view('student.edit',compact('grades','student'));
@@ -65,7 +67,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $student= new Student;
+        $student = Student::find($id);
         $student->first_name=$request->input('first_name');
         $student->last_name=$request->input('last_name');
         //$student->grade_id=$request->input('grade_id');

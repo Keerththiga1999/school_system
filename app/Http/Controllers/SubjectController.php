@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -11,7 +12,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects=Subject::paginate(15);
+        return view('subject.index',compact('subjects'));
     }
 
     /**
@@ -19,7 +21,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $subjects=Subject::pluck('subject_name','id');
+        return view('subject.create',compact('subjects'));
     }
 
     /**
@@ -27,7 +30,13 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject=new Subject;
+        $subject->subject_name=$request->input('subject_name');
+        $subject->subject_order=$request->input('subject_order');
+        $subject->color=$request->input('color');
+        $subject->save();
+        return redirect('/subjects');
+
     }
 
     /**
@@ -35,7 +44,10 @@ class SubjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+    $subject = Subject::find($id);
+    $students = Subject::find($id)->students;
+    $grades = Subject::find($id) -> grades;
+    return view('subject.show', compact('grades','students','subject'));
     }
 
     /**
@@ -43,7 +55,9 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject=Subject::find($id);
+        $subjects=Subject::pluck('subject_name','id');
+        return view('subject.edit',compact('subject','subjects'));
     }
 
     /**
@@ -51,7 +65,13 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $subject=Subject::find($id);
+        $subject->subject_name=$request->input('subject_name');
+        $subject->subject_order=$request->input('subject_order');
+        $subject->color=$request->input('color');
+        $subject->save();
+        return redirect('/subjects');
+
     }
 
     /**
@@ -59,6 +79,9 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subject=Subject::find($id);
+        $subject->delete();
+        return redirect('/subjects');
+
     }
 }
