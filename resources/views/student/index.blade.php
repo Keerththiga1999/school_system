@@ -2,6 +2,7 @@
     <br>
     <a href="students/create"><button type="button" class="btn btn-primary" data-mdb-ripple-init>New Student</button></a>
     <br><br>
+    <div class="card mb-4">
     <div class="container-fluid">
     <div class="card-body">
     <div class="card shadow mb-4">
@@ -62,6 +63,7 @@
             
 
         </div>
+    </div>
     </div>
 
 
