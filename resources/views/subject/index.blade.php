@@ -11,6 +11,13 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            @if(Session::has('msg'))
+                            <p class="alert alert-info">{{ Session::get('msg') }}</p>
+                            @elseif(Session::has('message'))
+                            <p class="alert alert-danger">{{ Session::get('message') }}</p>
+                            @elseif(Session::has('mess'))
+                            <p class="alert alert-success">{{ Session::get('mess') }}</p>
+                            @endif
                                 <table class="table table-bordered table table-striped table-hover" id="datatablesSimple" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>

@@ -40,7 +40,7 @@ class SubjectController extends Controller
         $subject->subject_order=$request->input('subject_order');
         $subject->color=$request->input('color');
         $subject->save();
-        return redirect('/subjects');
+        return redirect('/subjects')->with('msg','Successfully saved !!!');;
 
     }
 
@@ -85,7 +85,7 @@ class SubjectController extends Controller
         $subject->subject_order=$request->input('subject_order');
         $subject->color=$request->input('color');
         $subject->save();
-        return redirect('/subjects');
+        return redirect('/subjects')->with('mess','Successfully edited !!!');
 
     }
 
@@ -96,7 +96,7 @@ class SubjectController extends Controller
     {
         $subject=Subject::find($id);
         $subject->delete();
-        return redirect('/subjects');
+        return redirect('/subjects')->with('message','successfully deleted !!!');
 
     }
 }

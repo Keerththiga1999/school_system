@@ -18,6 +18,8 @@
     @endforeach
   </div>
     @endif
+  
+
 
   <form action="/students" method="post">
     @csrf

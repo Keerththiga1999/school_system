@@ -44,7 +44,7 @@ class StudentController extends Controller
         $student->save();
 
        
-        return redirect('students');
+        return redirect('students')->with('msg','Successfully saved !!!');
     }
 
     /**
@@ -87,7 +87,7 @@ class StudentController extends Controller
         //$student->grade_id=$request->input('grade_id');
         $student->grade_id=$request->input('grade_id');
         $student->save();
-        return redirect('students');
+        return redirect('students')->with('mess','Successfully edited !!!');
     }
 
     /**
@@ -98,6 +98,6 @@ class StudentController extends Controller
         
         $student = Student::find($id);
         $student->delete();
-        return redirect('students');
+        return redirect('students')->with('message','successfully deleted !!!');
     }
 }

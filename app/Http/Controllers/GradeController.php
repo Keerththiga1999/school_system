@@ -46,7 +46,7 @@ class GradeController extends Controller
 
         $grade->grade_color=$request->input('grade_color');
         $grade->save();
-        return redirect('/grades');
+        return redirect('/grades')->with('msg','Successfully saved !!!');;
 
     }
 
@@ -91,7 +91,7 @@ class GradeController extends Controller
 
         $grade->grade_color=$request->input('grade_color');
         $grade->save();
-        return redirect('/grades');
+        return redirect('/grades')->with('mess','Successfully edited !!!');
     }
 
     /**
@@ -101,5 +101,6 @@ class GradeController extends Controller
     {
         $grade=Grade::find($id);
         $grade->delete();
+        return redirect('grades')->with('message','successfully deleted !!!');
     }
 }
