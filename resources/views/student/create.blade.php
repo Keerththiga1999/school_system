@@ -43,7 +43,7 @@
 @endforeach
 </select>
     
-@error('grade_name'){{$error}} @enderror
+
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
