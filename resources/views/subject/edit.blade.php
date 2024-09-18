@@ -13,6 +13,13 @@
 
     <div class="container mt-3">
       <h2>Edit Subject Form</h2>
+      @if ($errors->any())
+  <div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+    {{$error}} <br>
+    @endforeach
+  </div>
+    @endif
       <form action="/subjects/{{$subject->id}}" method="post">
         @csrf
         @method('put')

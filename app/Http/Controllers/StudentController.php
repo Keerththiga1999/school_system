@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students=Student::paginate(15);
+        $students=Student::all();
         return view('student.index', compact('students'));
     }
 
@@ -31,11 +31,19 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            
+        ]);
+
         $student= new Student;
         $student->first_name=$request->input('first_name');
         $student->last_name=$request->input('last_name');
         $student->grade_id=$request->input('grade_id');
         $student->save();
+
+       
         return redirect('students');
     }
 
@@ -67,6 +75,12 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            
+        ]);
+
         $student = Student::find($id);
         $student->first_name=$request->input('first_name');
         $student->last_name=$request->input('last_name');

@@ -11,15 +11,25 @@
 
 <div class="container mt-3">
   <h2>Create Student Form</h2>
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+    {{$error}} <br>
+    @endforeach
+  </div>
+    @endif
+
   <form action="/students" method="post">
     @csrf
     <div class="mb-3 mt-3">
       <label for="first_name">First Name</label>
       <input type="text" class="form-control" id="email" name="first_name">
+      <!-- @error('first_name'){{$error}} @enderror -->
     </div>
     <div class="mb-3">
       <label for="last_name">Last Name</label>
       <input type="text" class="form-control" id="pwd"  name="last_name">
+      
     </div>
     <div class="mb-3">
       <label class="form-check-label">
@@ -31,7 +41,7 @@
 @endforeach
 </select>
     
-
+@error('grade_name'){{$error}} @enderror
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

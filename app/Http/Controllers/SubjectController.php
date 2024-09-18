@@ -12,7 +12,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects=Subject::paginate(15);
+        $subjects=Subject::all();
         return view('subject.index',compact('subjects'));
     }
 
@@ -30,6 +30,11 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'subject_name' => 'required',
+            'subject_order' => 'required',
+            'color' => 'required',
+        ]);
         $subject=new Subject;
         $subject->subject_name=$request->input('subject_name');
         $subject->subject_order=$request->input('subject_order');
@@ -55,6 +60,8 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
+        
+
         $subject=Subject::find($id);
         $subjects=Subject::pluck('subject_name','id');
         return view('subject.edit',compact('subject','subjects'));
@@ -65,6 +72,14 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+        
+        $validated = $request->validate([
+            'subject_name' => 'required',
+            'subject_order' => 'required',
+            'color' => 'required',
+        ]);
+
         $subject=Subject::find($id);
         $subject->subject_name=$request->input('subject_name');
         $subject->subject_order=$request->input('subject_order');

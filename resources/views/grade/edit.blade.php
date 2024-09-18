@@ -13,6 +13,13 @@
 
 <div class="container mt-3">
   <h2>Edit Grade Form</h2>
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+    {{$error}} <br>
+    @endforeach
+  </div>
+    @endif
   <form action="/grades/{{$grade->id}}" method="post">
     @csrf
     @method('put')

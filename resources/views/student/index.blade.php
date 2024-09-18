@@ -2,24 +2,41 @@
     <br>
     <a href="students/create"><button type="button" class="btn btn-primary" data-mdb-ripple-init>New Student</button></a>
     <br><br>
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table me-1"></i>
-            Students DataTable
-        </div>
-        <div class="card-body">
-            <table id="datatablesSimple" class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>ID </th>
+    <div class="container-fluid">
+    <div class="card-body">
+    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Students DataTable</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table table-striped table-hover" id="datatablesSimple" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                        
+                                        <th>ID </th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Grade Name</th>
                         <th>View Details</th>
                         <th>Edit</th>
                         <th>Delete</th>
-                    </tr>
-                </thead>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                        <th>ID </th>
+                                       
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Grade Name</th>
+                        <th>View Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                   
                 @foreach($students as $student)
                 <tr>
                     <td>{{$student->id}}</td>
@@ -40,9 +57,9 @@
                 </tr>
                 @endforeach
             </table>
-         
+            
             <br>
-            {{$students->links()}}
+            
 
         </div>
     </div>

@@ -3,15 +3,18 @@
 <a href="grades/create"><button type="button" class="btn btn-primary" data-mdb-ripple-init>New Grade</button></a>
 <br><br>
 <div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        Grades DataTable
-    </div>
+<div class="container-fluid">
     <div class="card-body">
-        <table id="datatablesSimple" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>ID </th>
+    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Grade DataTable</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table table-striped table-hover" id="datatablesSimple" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                        <th>ID </th>
                     <th>Grade Name</th>
                     <th>Grade Group</th>
                     <th>Grade Order</th>
@@ -19,8 +22,23 @@
                     <th>View Details</th>
                     <th>Edit</th>
                     <th>Delete</th>
-                </tr>
-            </thead>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                        <th>ID </th>
+                    <th>Grade Name</th>
+                    <th>Grade Group</th>
+                    <th>Grade Order</th>
+                    <th>Grade Color</th>
+                    <th>View Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      
+       
             @foreach($grades as $grade)
             <tr>
                 <td>{{$grade->id}}</td>
@@ -43,10 +61,15 @@
             </tr>
             @endforeach
         </table>
-        {{$grades->links()}}
-       
+        
+      
     </div>
 </div>
+    </div>
+    </div>
+</div>
+</div>
+
 
         
 </x-layout>
