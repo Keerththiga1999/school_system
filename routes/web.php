@@ -13,7 +13,7 @@ use App\Http\Controllers\SubjectController;
 Route::resources([
     'students' => StudentController::class,
     'grades' => GradeController::class,
-   'subjects'=> SubjectController::class
+    'subjects'=> SubjectController::class
 ]);
 
 Route::get('/', function () {
